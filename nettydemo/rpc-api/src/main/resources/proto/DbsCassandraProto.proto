@@ -1,0 +1,33 @@
+//使用 proto3 语法 ,未指定则使用proto2
+syntax = "proto3";
+
+//生成 proto 文件所在包路径
+//package com.example.protobuf.proto;
+
+//生成 proto 文件所在包路径
+//option java_package = "com.example.protobuf.proto";
+
+//生成 proto 文件名
+option java_outer_classname="DbsCassandraProto";
+
+//时间及对应值封装结果对应：queryExample，queryFull，queryVary
+message ResultOfQuery{
+  //是否有错0：正常；1：查询错误
+  int32 error = 1;
+  //错误信息
+  string msg = 2;
+  //由有序Map（时间，值）包装的一组数据，键表示对应分辨率的位置，值是采样处的值 。     KEY:time ;VALUE:value
+  map<int64, Value>  result=3;
+}
+
+//单工程值的容器
+message Value{
+  //数据类型 0：Double ;1：Long；
+  int32 dType=1;
+  //数据类型为0时的工程值
+  double dValue=2;
+  //数据类型为1时的工程值
+  int64 lValue=3;
+  //是否为空
+  bool isNull=4;
+}
