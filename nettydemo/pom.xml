@@ -7,6 +7,9 @@
         <module>rpc-api</module>
         <module>rpc-provider</module>
         <module>rpc-client</module>
+        <module>data-provider</module>
+        <module>data-api</module>
+        <module>data-client</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -50,6 +53,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--  protobuf 支持 Java 核心包-->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.21.12</version>
+        </dependency>
+        <!--  proto 与 Json 互转会用到-->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>3.15.3</version>
         </dependency>
     </dependencies>
 
