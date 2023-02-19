@@ -1,5 +1,7 @@
 package com.example.server;
 
+import com.example.codec.MessageDecoder;
+import com.example.handler.ServerHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -21,11 +23,11 @@ public class DataServer {
                         @Override
                         protected void initChannel(SocketChannel channel) throws Exception {
                             ChannelPipeline pipeline = channel.pipeline();
-                            pipeline.addLast(null);
-                            pipeline.addLast(null);
+                            pipeline.addLast(new MessageDecoder());
+                            pipeline.addLast(new ServerHandler());
                         }
                     });
-            ChannelFuture channelFuture = bootstrap.bind(8081).sync();
+            ChannelFuture channelFuture = bootstrap.bind(9000).sync();
             channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
             e.printStackTrace();
